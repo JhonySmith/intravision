@@ -8,7 +8,7 @@ export const NavBar = styled.nav`
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 
   background-color: #002137;
 `;

@@ -9,8 +9,8 @@ const MainNavList = (props) => {
 
   return (
     <NavList>
-      {listData.map((itemData) => (
-        <MainNavItem itemData={itemData} />
+      {listData.map((itemData, index) => (
+        <MainNavItem itemData={itemData} key={index} />
       ))}
     </NavList>
   );

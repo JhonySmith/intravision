@@ -1,17 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import MainNav from '../main-nav/main-nav.jsx';
-import Search from '../search/search.jsx';
+import TasksBlock from '../tasks-block/tasks-block.jsx';
 
-import { MainPageBlock, ContentSection } from './main-page-styles.js';
+import { MainPageBlock } from './main-page-styles.js';
 
 const MainPage = () => {
   return (
     <MainPageBlock>
       <MainNav></MainNav>
-      <ContentSection>
-        <Search></Search>
-      </ContentSection>
+      <TasksBlock />
     </MainPageBlock>
   );
 };

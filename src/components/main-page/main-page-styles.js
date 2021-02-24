@@ -7,7 +7,3 @@ export const MainPageBlock = styled.main`
 
   margin: 0 auto;
 `;
-
-export const ContentSection = styled.section`
-  width: 100%;
-`;
