@@ -1,4 +1,7 @@
 import React from 'react';
+import { MODES } from '../../../constants/modes.js';
+
+import { getTask } from '../../../api/server-api.js';
 
 import {
   TasksTable,
@@ -17,7 +20,16 @@ import {
 import { titles } from './tasks-mocks.js';
 
 export default function TasksList(props) {
-  const { tasks } = props;
+  const { tasks, setMode, setChoosenTask } = props;
+
+  function setTask(id) {
+    setChoosenTask(id);
+    setMode(MODES.EDIT);
+  }
+
+  function onTaskClick(id) {
+    getTask(id, setTask);
+  }
 
   return (
     <TasksTable>
@@ -32,7 +44,7 @@ export default function TasksList(props) {
       <tbody>
         {tasks.map((task, index) => {
           return (
-            <TaskRow>
+            <TaskRow onClick={() => onTaskClick(task.id)}>
               <IDCell>{task.id}</IDCell>
               <TaskDescription>
                 <TaskText>{task.name}</TaskText>

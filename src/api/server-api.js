@@ -16,3 +16,9 @@ export function sendNewTask(task, func) {
     body: JSON.stringify(task),
   }).then((req) => req.json().then((data) => func(data)));
 }
+
+export function getTask(id, actionFunc) {
+  fetch(SERVER + 'api/' + TENANTGUID + '/Tasks/' + id).then((req) =>
+    req.json().then((data) => actionFunc(data)),
+  );
+}

@@ -1,18 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { ActionCreator } from '../../../reducer/reducer.js';
 
 import NewTaskForm from './new-task-form/new-task-form.jsx';
+import EditTaskForm from './edit-task-form/edit-task-form.jsx';
 
 import { MODES } from '../../../constants/modes.js';
 
-export default function TasksForms(props) {
-  const { mode, setMode } = props;
+function TasksForms(props) {
+  const { mode, setMode, choosenTask } = props;
 
   switch (mode) {
     case MODES.NEW:
       return <NewTaskForm setMode={setMode} />;
     case MODES.EDIT:
-      return <div></div>;
+      return <EditTaskForm setMode={setMode} task={choosenTask} />;
     default:
       return '';
   }
 }
+
+const mapStateToProps = (state) => ({
+  tasks: state.currentTasks,
+  choosenTask: state.choosenTask,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setTasks(tasks) {
+    dispatch(ActionCreator.setCurrentTasks(tasks));
+  },
+});
+
+TasksForms.propTypes = {
+  mode: PropTypes.string,
+  setMode: PropTypes.func,
+  choosenTask: PropTypes.object,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TasksForms);

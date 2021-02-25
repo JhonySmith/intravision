@@ -13,7 +13,7 @@ import { TasksSection } from './tasks-block-styles.js';
 import { MODES } from '../../constants/modes.js';
 
 function TasksBlock(props) {
-  const { tasks, setTasks } = props;
+  const { tasks, setTasks, setChoosenTask } = props;
 
   const [mode, setMode] = useState(MODES.DEFAULT);
 
@@ -24,7 +24,7 @@ function TasksBlock(props) {
       <TasksForms mode={mode} setMode={setMode} />
       <Search></Search>
       <NewTaskButton setCurrentMode={setMode}></NewTaskButton>
-      <TasksList tasks={tasks}></TasksList>
+      <TasksList tasks={tasks} setMode={setMode} setChoosenTask={setChoosenTask}></TasksList>
     </TasksSection>
   );
 }
@@ -36,6 +36,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setTasks(tasks) {
     dispatch(ActionCreator.setCurrentTasks(tasks));
+  },
+  setChoosenTask(task) {
+    dispatch(ActionCreator.setChoosenTask(task));
   },
 });
 

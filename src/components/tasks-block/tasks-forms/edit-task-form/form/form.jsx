@@ -35,11 +35,6 @@ function Form(props) {
         <DescriptionText>{choosenTask.description}</DescriptionText>
       </FormLabel>
 
-      <FormLabel>
-        Описание
-        <FormText areaHeigth="134" ref={descriptionRef} />
-      </FormLabel>
-
       <FormSubmitButton
         onClick={(evt) => {
           evt.preventDefault();
