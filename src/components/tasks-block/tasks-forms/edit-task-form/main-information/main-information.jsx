@@ -23,8 +23,6 @@ function MainInformation(props) {
   const descriptionRef = useRef(null);
   const nameRef = useRef(null);
 
-  console.log(taskForSend);
-
   const taskSended = (id) => {
     setChoosenTaskID(id);
     getTasks(setTasks);
