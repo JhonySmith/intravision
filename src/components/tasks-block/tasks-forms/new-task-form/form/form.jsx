@@ -4,25 +4,30 @@ import { MainForm, FormLabel, FormText, FormSubmitButton } from './form-styles.j
 import { connect } from 'react-redux';
 import { ActionCreator } from '../../../../../reducer/reducer.js';
 
-import { sendNewTask, getTasks } from '../../../../../api/server-api.js';
+import { sendNewTask, getTasks, getTask } from '../../../../../api/server-api.js';
 
 import { MODES } from '../../../../../constants/modes.js';
 
 function Form(props) {
-  const { setChoosenTaskID, setTasks, setMode } = props;
+  const { setChoosenTask, setTasks, setMode } = props;
   const descriptionRef = useRef(null);
   const nameRef = useRef(null);
 
   const taskSended = (id) => {
-    setChoosenTaskID(id);
+    const taskReady = (task) => {
+      setChoosenTask(task);
+      setMode(MODES.EDIT);
+    };
+    getTask(id, taskReady);
     getTasks(setTasks);
-    setMode(MODES.EDIT);
   };
 
   const createNewTask = () => {
     const newTask = {
       name: nameRef.current.value,
       description: descriptionRef.current.value,
+      lifetimeItems: [],
+      tags: [],
     };
 
     sendNewTask(newTask, taskSended);

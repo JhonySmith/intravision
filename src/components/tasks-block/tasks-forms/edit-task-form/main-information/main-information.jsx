@@ -1,5 +1,15 @@
 import React, { useRef } from 'react';
-import { MainForm, FormLabel, FormText, FormSubmitButton, DescriptionText } from './form-styles.js';
+import PropTypes from 'prop-types';
+
+import CommentsList from '../comments-list/comments-list.jsx';
+import NewComment from '../new-comment/new-comment.jsx';
+
+import {
+  MainForm,
+  FormLabel,
+  FormSubmitButton,
+  DescriptionText,
+} from './main-information-styles.js';
 
 import { connect } from 'react-redux';
 import { ActionCreator } from '../../../../../reducer/reducer.js';
@@ -8,10 +18,12 @@ import { sendNewTask, getTasks } from '../../../../../api/server-api.js';
 
 import { MODES } from '../../../../../constants/modes.js';
 
-function Form(props) {
-  const { setChoosenTaskID, choosenTask, setTasks, setMode } = props;
+function MainInformation(props) {
+  const { setChoosenTaskID, choosenTask, setTasks, setMode, taskForSend } = props;
   const descriptionRef = useRef(null);
   const nameRef = useRef(null);
+
+  console.log(taskForSend);
 
   const taskSended = (id) => {
     setChoosenTaskID(id);
@@ -35,6 +47,12 @@ function Form(props) {
         <DescriptionText>{choosenTask.description}</DescriptionText>
       </FormLabel>
 
+      <NewComment
+        comments={choosenTask.lifetimeItems}
+        choosenTask={choosenTask}
+        taskForSend={taskForSend}
+      />
+
       <FormSubmitButton
         onClick={(evt) => {
           evt.preventDefault();
@@ -43,13 +61,19 @@ function Form(props) {
       >
         Сохранить
       </FormSubmitButton>
+      <CommentsList comments={choosenTask.lifetimeItems} />
     </MainForm>
   );
 }
 
+MainInformation.propTypes = {
+  choosenTask: PropTypes.array,
+  setTasks: PropTypes.func,
+  setMode: PropTypes.func,
+};
+
 const mapStateToProps = (state) => ({
   tasks: state.currentTasks,
-  choosenTaskID: state.choosenTaskID,
   choosenTask: state.choosenTask,
 });
 
@@ -59,4 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(MainInformation);

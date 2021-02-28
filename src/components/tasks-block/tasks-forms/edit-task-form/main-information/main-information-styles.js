@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
 export const MainForm = styled.form`
-  padding-top: 55px;
-  padding-left: 40px;
-  background-color: #ecf3f7;
-
+  box-sizing: border-box;
+  width: 750px;
   height: 100%;
+
+  padding-top: 25px;
+  padding-left: 40px;
+
+  background-color: #ecf3f7;
 `;
 
 export const FormLabel = styled.label`
@@ -22,7 +25,7 @@ export const FormLabel = styled.label`
 export const DescriptionText = styled.p`
   font-size: 14px;
   font-family: 'Ubuntu';
-  color: #9f9ea7;
+  color: black;
 `;
 
 export const FormText = styled.textarea`
@@ -39,7 +42,7 @@ export const FormText = styled.textarea`
 
 export const FormSubmitButton = styled.button`
   width: 150px;
-  margin-top: 74px;
+  margin-top: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
 

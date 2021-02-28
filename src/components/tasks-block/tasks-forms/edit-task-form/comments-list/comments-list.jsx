@@ -1,5 +1,23 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Comment from './comment-item/comment-item.jsx';
 
-export default function CommentsList() {
-  return <Fragment></Fragment>;
+import { Comments } from './comment-list-styles';
+
+function CommentsList(props) {
+  const { comments } = props;
+
+  return (
+    <Comments>
+      {comments.map((comment) => (
+        <Comment comment={comment} />
+      ))}
+    </Comments>
+  );
 }
+
+CommentsList.propTypes = {
+  comments: PropTypes.array,
+};
+
+export default CommentsList;

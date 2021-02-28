@@ -6,6 +6,8 @@ const ActionType = {
   SET_CHOOSEN_TASK: 'SET_CHOOSEN_TASK',
   SET_TENANT_GUID: 'SET_TENANT_GUID',
   SET_MODE: 'SET_MODE',
+  SET_STATUSES: 'SET_STATUSES',
+  SET_USERS: 'SET_USERS',
 };
 
 const initialState = {
@@ -13,6 +15,8 @@ const initialState = {
   choosenTaskID: null,
   choosenTask: [],
   mode: MODES.DEFAULT,
+  statuses: [],
+  users: [],
 };
 
 const ActionCreator = {
@@ -40,6 +44,18 @@ const ActionCreator = {
       payload: mode,
     };
   },
+  setStatuses: (statuses) => {
+    return {
+      type: ActionType.SET_STATUSES,
+      payload: statuses,
+    };
+  },
+  setUsers: (users) => {
+    return {
+      type: ActionType.SET_USERS,
+      payload: users,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -59,6 +75,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_MODE:
       return Object.assign({}, state, {
         mode: action.payload,
+      });
+    case ActionType.SET_STATUSES:
+      return Object.assign({}, state, {
+        statuses: action.payload,
+      });
+    case ActionType.SET_USERS:
+      return Object.assign({}, state, {
+        users: action.payload,
       });
     default:
       return state;

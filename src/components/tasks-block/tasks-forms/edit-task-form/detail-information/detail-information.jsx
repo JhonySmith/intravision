@@ -1,12 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+import localization from 'moment/locale/ru';
 
-import { DetailInformationBlock, FormLabel, InfoTextForm } from './detail-information-styles.js';
+import {
+  DetailInformationBlock,
+  FormLabel,
+  InfoTextForm,
+  TermForm,
+} from './detail-information-styles.js';
+import InformationStatus from './information-status/information-status.jsx';
+import Executor from './executor/executor.jsx';
+import Tags from './tags/tags.jsx';
 
 function DetailInformation(props) {
-  const { task } = props;
+  const { task, statuses, users } = props;
+  let updateTime = moment(task.updatedAt).locale('ru', localization).format('DD.MM.YYYY г.');
+
   return (
     <DetailInformationBlock>
+      <InformationStatus
+        statuses={statuses}
+        currentStatusID={task.statusId}
+        currentStatusRgb={task.statusRgb}
+      ></InformationStatus>
       <FormLabel>
         Заявитель
         <InfoTextForm>{task.initiatorName}</InfoTextForm>
@@ -17,7 +34,7 @@ function DetailInformation(props) {
       </FormLabel>
       <FormLabel>
         Исполнитель
-        <InfoTextForm>{task.executorName}</InfoTextForm>
+        <Executor users={users} currentExecutorID={task.executorId} />
       </FormLabel>
       <FormLabel>
         Приоритет
@@ -25,7 +42,11 @@ function DetailInformation(props) {
       </FormLabel>
       <FormLabel>
         Срок
-        <InfoTextForm>{task.priorityName}</InfoTextForm>
+        <TermForm>{updateTime}</TermForm>
+      </FormLabel>
+      <FormLabel>
+        Теги
+        <Tags tags={task.tags} />
       </FormLabel>
     </DetailInformationBlock>
   );

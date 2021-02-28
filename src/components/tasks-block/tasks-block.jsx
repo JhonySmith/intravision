@@ -21,7 +21,7 @@ function TasksBlock(props) {
 
   return (
     <TasksSection>
-      <TasksForms mode={mode} setMode={setMode} />
+      <TasksForms mode={mode} setMode={setMode} setChoosenTask={setChoosenTask} />
       <Search></Search>
       <NewTaskButton setCurrentMode={setMode}></NewTaskButton>
       <TasksList tasks={tasks} setMode={setMode} setChoosenTask={setChoosenTask}></TasksList>

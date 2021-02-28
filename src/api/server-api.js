@@ -17,8 +17,30 @@ export function sendNewTask(task, func) {
   }).then((req) => req.json().then((data) => func(data)));
 }
 
+export function editTask(task) {
+  fetch(SERVER + 'api/' + TENANTGUID + '/Tasks', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(task),
+  });
+}
+
 export function getTask(id, actionFunc) {
   fetch(SERVER + 'api/' + TENANTGUID + '/Tasks/' + id).then((req) =>
+    req.json().then((data) => actionFunc(data)),
+  );
+}
+
+export function getStatuses(actionFunc) {
+  fetch(SERVER + 'api/' + TENANTGUID + '/Statuses').then((req) =>
+    req.json().then((data) => actionFunc(data)),
+  );
+}
+
+export function getUsers(actionFunc) {
+  fetch(SERVER + 'api/' + TENANTGUID + '/Users').then((req) =>
     req.json().then((data) => actionFunc(data)),
   );
 }

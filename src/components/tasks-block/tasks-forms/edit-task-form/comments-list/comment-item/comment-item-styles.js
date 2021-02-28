@@ -2,14 +2,25 @@ import styled from 'styled-components';
 
 export const Comment = styled.li``;
 
-export const CommentHead = styled.div``;
-
-export const CommentAvatar = styled.img`
-  border: 1px solid #e8e8e8;
-  border-radius: 50%;
+export const CommentHead = styled.div`
+  display: flex;
 `;
 
-export const CommentInfo = styled.div``;
+export const CommentAvatar = styled.img`
+  box-sizing: border-box;
+  display: block;
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid #e8e8e8;
+  border-radius: 50%;
+
+  background-color: #f5f5f5;
+`;
+
+export const CommentInfo = styled.div`
+  margin-left: 10px;
+`;
 
 export const CommentAuthor = styled.p`
   font-size: 12px;
@@ -26,13 +37,15 @@ export const CommentTime = styled.p`
 export const CommentText = styled.p`
   display: block;
   box-sizing: border-box;
+  width: 620px;
 
+  margin-left: 50px;
   padding: 10px;
 
   border: 1px solid #dce3e7;
   border-radius: 5px;
 
-  background-color: #dce3e7;
+  background-color: #e3e9f4;
 
   font-size: 14px;
   font-family: 'Roboto';

@@ -9,13 +9,31 @@ import EditTaskForm from './edit-task-form/edit-task-form.jsx';
 import { MODES } from '../../../constants/modes.js';
 
 function TasksForms(props) {
-  const { mode, setMode, choosenTask } = props;
+  const {
+    mode,
+    setMode,
+    choosenTask,
+    statuses,
+    setStatuses,
+    setUsers,
+    users,
+    setChoosenTask,
+  } = props;
 
   switch (mode) {
     case MODES.NEW:
-      return <NewTaskForm setMode={setMode} />;
+      return <NewTaskForm setMode={setMode} setChoosenTask={setChoosenTask} />;
     case MODES.EDIT:
-      return <EditTaskForm setMode={setMode} task={choosenTask} />;
+      return (
+        <EditTaskForm
+          setMode={setMode}
+          task={choosenTask}
+          setStatuses={setStatuses}
+          statuses={statuses}
+          setUsers={setUsers}
+          users={users}
+        />
+      );
     default:
       return '';
   }
@@ -24,11 +42,19 @@ function TasksForms(props) {
 const mapStateToProps = (state) => ({
   tasks: state.currentTasks,
   choosenTask: state.choosenTask,
+  statuses: state.statuses,
+  users: state.users,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setTasks(tasks) {
     dispatch(ActionCreator.setCurrentTasks(tasks));
+  },
+  setStatuses(statuses) {
+    dispatch(ActionCreator.setStatuses(statuses));
+  },
+  setUsers(users) {
+    dispatch(ActionCreator.setUsers(users));
   },
 });
 

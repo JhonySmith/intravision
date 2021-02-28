@@ -4,12 +4,12 @@ import TaskFormHeader from './task-from-header/task-form-header.jsx';
 import Form from './form/form.jsx';
 
 export default function NewTaskForm(props) {
-  const { setMode } = props;
+  const { setMode, setChoosenTask } = props;
 
   return (
     <TaskForm>
       <TaskFormHeader setMode={setMode} />
-      <Form setMode={setMode} />
+      <Form setMode={setMode} setChoosenTask={setChoosenTask} />
     </TaskForm>
   );
 }
