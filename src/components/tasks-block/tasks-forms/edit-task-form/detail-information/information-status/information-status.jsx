@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { StatusList, StatusItem, StatusBlock } from './information-status-styles.js';
 
 function InformationStatus(props) {
-  const { statuses, currentStatusID, currentStatusRgb } = props;
+  const { statuses, currentStatusID, currentStatusRgb, setStatusId } = props;
   const [currentStatus, setCurrentStatus] = useState({});
 
   function getCurrentStatus(id) {
     setCurrentStatus(statuses.slice().filter((status) => status.id === +id)[0]);
+    setStatusId(id);
   }
 
   return (

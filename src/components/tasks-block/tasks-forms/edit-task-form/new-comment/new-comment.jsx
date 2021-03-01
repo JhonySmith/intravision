@@ -1,17 +1,21 @@
 import React, { useState, useRef } from 'react';
 import { CommentBlock, CommentTextBlock, AddCommentButton } from './new-comment-styles.js';
-import { editTask } from '../../../../../api/server-api.js';
+import { editTask, getTask } from '../../../../../api/server-api.js';
 
 function NewComment(props) {
-  const { comments, choosenTask, taskForSend } = props;
+  const { comments, choosenTask, taskForSend, setChoosenTask } = props;
 
   const [active, setActive] = useState(false);
 
   const newCommentText = useRef(null);
 
+  function Update() {
+    getTask(choosenTask.id, setChoosenTask);
+  }
+
   function addNewComment() {
     taskForSend.comment = newCommentText.current.value;
-    editTask(taskForSend);
+    editTask(taskForSend, Update);
   }
 
   return (

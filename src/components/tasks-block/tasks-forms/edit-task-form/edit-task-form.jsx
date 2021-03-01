@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { TaskSection, InfoWraper } from './edit-task-form-styles.js';
@@ -10,12 +10,15 @@ import DetailInformation from './detail-information/detail-information.jsx';
 import { getStatuses, getUsers } from '../../../../api/server-api.js';
 
 function EditTaskForm(props) {
-  const { setMode, task, statuses, setStatuses, users, setUsers } = props;
+  const { setMode, task, statuses, setStatuses, users, setUsers, setChoosenTask, setTasks } = props;
+
+  const [statusId, setStatusId] = useState(task.statusId);
+  const [executorId, setExecutorId] = useState(task.executorId);
 
   let taskForSend = {
     id: task.id,
-    statusId: task.statusId,
-    executorId: task.executorId,
+    statusId: statusId,
+    executorId: executorId,
   };
 
   useEffect(() => {
@@ -27,9 +30,21 @@ function EditTaskForm(props) {
     <TaskSection>
       <EditFormHeader setMode={setMode} task={task} />
       <InfoWraper>
-        <MainInformation taskForSend={taskForSend} />
+        <MainInformation
+          taskForSend={taskForSend}
+          setChoosenTask={setChoosenTask}
+          setMode={setMode}
+          setTasks={setTasks}
+        />
 
-        <DetailInformation task={task} statuses={statuses} users={users} />
+        <DetailInformation
+          task={task}
+          statuses={statuses}
+          users={users}
+          setChoosenTask={setChoosenTask}
+          setStatusId={setStatusId}
+          setExecutorId={setExecutorId}
+        />
       </InfoWraper>
     </TaskSection>
   );

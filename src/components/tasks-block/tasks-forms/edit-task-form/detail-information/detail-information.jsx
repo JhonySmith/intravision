@@ -14,7 +14,7 @@ import Executor from './executor/executor.jsx';
 import Tags from './tags/tags.jsx';
 
 function DetailInformation(props) {
-  const { task, statuses, users } = props;
+  const { task, statuses, users, setChoosenTask, setExecutorId, setStatusId } = props;
   let updateTime = moment(task.updatedAt).locale('ru', localization).format('DD.MM.YYYY г.');
 
   return (
@@ -23,6 +23,7 @@ function DetailInformation(props) {
         statuses={statuses}
         currentStatusID={task.statusId}
         currentStatusRgb={task.statusRgb}
+        setStatusId={setStatusId}
       ></InformationStatus>
       <FormLabel>
         Заявитель
@@ -34,7 +35,7 @@ function DetailInformation(props) {
       </FormLabel>
       <FormLabel>
         Исполнитель
-        <Executor users={users} currentExecutorID={task.executorId} />
+        <Executor users={users} currentExecutorID={task.executorId} setExecutorId={setExecutorId} />
       </FormLabel>
       <FormLabel>
         Приоритет

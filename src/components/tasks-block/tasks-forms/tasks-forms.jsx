@@ -18,6 +18,7 @@ function TasksForms(props) {
     setUsers,
     users,
     setChoosenTask,
+    setTasks,
   } = props;
 
   switch (mode) {
@@ -31,7 +32,9 @@ function TasksForms(props) {
           setStatuses={setStatuses}
           statuses={statuses}
           setUsers={setUsers}
+          setTasks={setTasks}
           users={users}
+          setChoosenTask={setChoosenTask}
         />
       );
     default:

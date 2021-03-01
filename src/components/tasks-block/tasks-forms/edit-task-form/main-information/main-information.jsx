@@ -14,29 +14,23 @@ import {
 import { connect } from 'react-redux';
 import { ActionCreator } from '../../../../../reducer/reducer.js';
 
-import { sendNewTask, getTasks } from '../../../../../api/server-api.js';
+import { editTask, getTasks } from '../../../../../api/server-api.js';
 
 import { MODES } from '../../../../../constants/modes.js';
 
 function MainInformation(props) {
-  const { setChoosenTaskID, choosenTask, setTasks, setMode, taskForSend } = props;
+  const { setChoosenTaskID, choosenTask, setTasks, setMode, taskForSend, setChoosenTask } = props;
   const descriptionRef = useRef(null);
   const nameRef = useRef(null);
 
-  const taskSended = (id) => {
-    setChoosenTaskID(id);
+  function SendNewTaskData() {
+    editTask(taskForSend, sendOk);
+  }
+
+  function sendOk() {
+    setMode(MODES.DEFAULT);
     getTasks(setTasks);
-    setMode(MODES.EDIT);
-  };
-
-  const createNewTask = () => {
-    const newTask = {
-      name: nameRef.current.value,
-      description: descriptionRef.current.value,
-    };
-
-    sendNewTask(newTask, taskSended);
-  };
+  }
 
   return (
     <MainForm>
@@ -49,12 +43,13 @@ function MainInformation(props) {
         comments={choosenTask.lifetimeItems}
         choosenTask={choosenTask}
         taskForSend={taskForSend}
+        setChoosenTask={setChoosenTask}
       />
 
       <FormSubmitButton
         onClick={(evt) => {
           evt.preventDefault();
-          createNewTask();
+          SendNewTaskData();
         }}
       >
         Сохранить

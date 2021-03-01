@@ -3,16 +3,21 @@ import PropTypes from 'prop-types';
 import { ExecutorList, ExecutorItem, ExecutorBlock } from './executor-styles.js';
 
 function Executor(props) {
-  const { users, currentExecutorID } = props;
+  const { users, currentExecutorID, setExecutorId } = props;
   const [currentExecutor, setCurrentExecutor] = useState({});
 
   function getCurrentExecutor(id) {
     setCurrentExecutor(users.slice().filter((user) => user.id === +id)[0]);
+    setExecutorId(id);
   }
 
   return (
     <ExecutorBlock>
-      <ExecutorList onChange={(evt) => getCurrentExecutor(evt.target.value)}>
+      <ExecutorList
+        onChange={(evt) => {
+          getCurrentExecutor(evt.target.value);
+        }}
+      >
         {users.map((user) => {
           const selected = currentExecutorID === user.id ? 'selected' : '';
           return (

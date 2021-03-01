@@ -17,13 +17,18 @@ export function sendNewTask(task, func) {
   }).then((req) => req.json().then((data) => func(data)));
 }
 
-export function editTask(task) {
+export function editTask(task, func) {
   fetch(SERVER + 'api/' + TENANTGUID + '/Tasks', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify(task),
+  }).then((req) => {
+    console.log(req);
+    if (func) {
+      func();
+    }
   });
 }
 
