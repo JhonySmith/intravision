@@ -25,7 +25,6 @@ export function editTask(task, func) {
     },
     body: JSON.stringify(task),
   }).then((req) => {
-    console.log(req);
     if (func) {
       func();
     }

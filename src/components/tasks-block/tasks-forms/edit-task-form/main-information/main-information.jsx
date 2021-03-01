@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import CommentsList from '../comments-list/comments-list.jsx';
@@ -19,9 +19,7 @@ import { editTask, getTasks } from '../../../../../api/server-api.js';
 import { MODES } from '../../../../../constants/modes.js';
 
 function MainInformation(props) {
-  const { setChoosenTaskID, choosenTask, setTasks, setMode, taskForSend, setChoosenTask } = props;
-  const descriptionRef = useRef(null);
-  const nameRef = useRef(null);
+  const { choosenTask, setTasks, setMode, taskForSend, setChoosenTask } = props;
 
   function SendNewTaskData() {
     editTask(taskForSend, sendOk);
@@ -36,7 +34,7 @@ function MainInformation(props) {
     <MainForm>
       <FormLabel>
         Описание
-        <DescriptionText>{choosenTask.description}</DescriptionText>
+        <DescriptionText>{choosenTask.description.toString()}</DescriptionText>
       </FormLabel>
 
       <NewComment

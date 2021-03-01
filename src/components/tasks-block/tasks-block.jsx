@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ActionCreator } from '../../reducer/reducer.js';
 
@@ -41,5 +42,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setChoosenTask(task));
   },
 });
+
+TasksBlock.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func,
+  setChoosenTask: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksBlock);

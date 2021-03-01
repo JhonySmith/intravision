@@ -14,7 +14,7 @@ import Executor from './executor/executor.jsx';
 import Tags from './tags/tags.jsx';
 
 function DetailInformation(props) {
-  const { task, statuses, users, setChoosenTask, setExecutorId, setStatusId } = props;
+  const { task, statuses, users, setExecutorId, setStatusId } = props;
   let updateTime = moment(task.updatedAt).locale('ru', localization).format('DD.MM.YYYY г.');
 
   return (

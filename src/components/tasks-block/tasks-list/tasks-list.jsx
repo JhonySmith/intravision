@@ -44,7 +44,7 @@ export default function TasksList(props) {
       <tbody>
         {tasks.map((task, index) => {
           return (
-            <TaskRow onClick={() => onTaskClick(task.id)}>
+            <TaskRow key={index} onClick={() => onTaskClick(task.id)}>
               <IDCell>{task.id}</IDCell>
               <TaskDescription>
                 <TaskText>{task.name}</TaskText>

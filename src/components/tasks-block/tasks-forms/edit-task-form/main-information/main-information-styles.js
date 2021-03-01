@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainForm = styled.form`
+export const MainForm = styled.div`
   box-sizing: border-box;
   width: 750px;
   height: fit-content;
@@ -12,7 +12,7 @@ export const MainForm = styled.form`
   background-color: #ecf3f7;
 `;
 
-export const FormLabel = styled.label`
+export const FormLabel = styled.span`
   display: flex;
   flex-direction: column;
 
@@ -24,9 +24,14 @@ export const FormLabel = styled.label`
 `;
 
 export const DescriptionText = styled.p`
+  width: 650px;
+  min-height: 100px;
+
   font-size: 14px;
   font-family: 'Ubuntu';
   color: black;
+
+  white-space: wrap;
 `;
 
 export const FormText = styled.textarea`

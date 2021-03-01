@@ -12,10 +12,10 @@ import { MainPageBlock } from './main-page-styles.js';
 
 import { PAGE_LISTS } from '../../mocks/nav-list-mocks.js';
 
-const MainPage = () => {
+function MainPage() {
   const [currentPage, setCurrentPage] = useState(PAGE_LISTS.APPLICATIONS);
 
-  function getPage() {
+  function setPage() {
     switch (currentPage) {
       case PAGE_LISTS.KNOWLAGE_BASE:
         return <KnowlageBase />;
@@ -35,9 +35,9 @@ const MainPage = () => {
   return (
     <MainPageBlock>
       <MainNav currentPage={currentPage} setCurrentPage={setCurrentPage}></MainNav>
-      {getPage()}
+      {setPage()}
     </MainPageBlock>
   );
-};
+}
 
 export default MainPage;

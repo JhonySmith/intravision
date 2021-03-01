@@ -3,7 +3,7 @@ import { CommentBlock, CommentTextBlock, AddCommentButton } from './new-comment-
 import { editTask, getTask } from '../../../../../api/server-api.js';
 
 function NewComment(props) {
-  const { comments, choosenTask, taskForSend, setChoosenTask } = props;
+  const { choosenTask, taskForSend, setChoosenTask } = props;
 
   const [active, setActive] = useState(false);
 
@@ -14,8 +14,9 @@ function NewComment(props) {
   }
 
   function addNewComment() {
-    taskForSend.comment = newCommentText.current.value;
-    editTask(taskForSend, Update);
+    let taskCopy = Object.assign({}, taskForSend);
+    taskCopy.comment = newCommentText.current.value;
+    editTask(taskCopy, Update);
   }
 
   return (

@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => ({
 TasksForms.propTypes = {
   mode: PropTypes.string,
   setMode: PropTypes.func,
-  choosenTask: PropTypes.object,
+  choosenTask: PropTypes.array,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksForms);
