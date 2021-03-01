@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const NavItem = styled.li`
   width: 100%;
   cursor: pointer;
-  background-color: ${(props) => (props.active ? 'red' : '')};
+  background-color: ${(props) => (props.active ? '#002c49' : '')};
 
   &:hover {
     opacity: 0.8;
