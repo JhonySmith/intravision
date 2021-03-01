@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const TaskSection = styled.section`
   position: fixed;
+  overflow-y: scroll;
   box-sizing: border-box;
   top: 0;
   right: 0;

@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const MainForm = styled.form`
   box-sizing: border-box;
   width: 750px;
-  height: 100%;
+  height: fit-content;
 
   padding-top: 25px;
+  padding-bottom: 65px;
   padding-left: 40px;
 
   background-color: #ecf3f7;
